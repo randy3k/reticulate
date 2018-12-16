@@ -603,7 +603,11 @@ read_python_versions_from_registry <- function(hive, key,type=key) {
                     arch <- "64"
                   else {
                     python_arch <- python_arch(executable_path)
-                    arch <- gsub("bit", "", python_arch, fixed = TRUE)
+                    if (length(python_arch) > 0) {
+                      arch <- gsub("bit", "", python_arch, fixed = TRUE)
+                    } else  {
+                      arch <- NA
+                    }
                   }
                 }
               } else {
@@ -713,5 +717,3 @@ py_session_initialized_binary <- function() {
   # return
   python_binary
 }
-
-
