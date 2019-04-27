@@ -701,7 +701,7 @@ read_python_versions_from_registry <- function(hive, key,type=key) {
 python_arch <- function(python) {
 
   # run command
-  result <- system2(python, stdout = TRUE, args = c("-c", shQuote(
+  result <- system2(python, stdout = TRUE, stderr = TRUE, args = c("-c", shQuote(
     "import sys; import platform; sys.stdout.write(platform.architecture()[0])")))
 
   # check for error
@@ -765,5 +765,3 @@ py_session_initialized_binary <- function() {
   # return
   python_binary
 }
-
-
